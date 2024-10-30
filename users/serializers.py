@@ -4,6 +4,7 @@ from .models import CustomUser
 
 class RegisterSerializer(serializers.ModelSerializer):
     password = serializers.CharField(write_only=True)
+    phone = serializers.CharField(required=False, allow_blank=True)
 
     class Meta:
         model = CustomUser
@@ -13,7 +14,7 @@ class RegisterSerializer(serializers.ModelSerializer):
         user = CustomUser.objects.create_user(
             email=validated_data["email"],
             username=validated_data["username"],
-            phone=validated_data["phone"],
+            phone=validated_data.get("phone", ""),
         )
         return user
 
