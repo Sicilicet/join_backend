@@ -13,7 +13,7 @@ class RegisterSerializer(serializers.ModelSerializer):
         user = CustomUser.objects.create_user(
             email=validated_data["email"],
             username=validated_data["username"],
-            phone="",
+            phone=validated_data["phone"],
         )
         return user
 
